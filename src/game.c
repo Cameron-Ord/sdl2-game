@@ -1,17 +1,23 @@
 #include "inc/sdl_include.h"
 
+#include <errno.h>
 #include <time.h>
-
 int main(int argc, char *argv[]) {
+  int result = 0;
   struct SdlData sdl;
   struct Player player;
 
   if (start_sdl(&sdl) < 0)
     return -1;
 
-  srand(time(NULL));
-  initialize_player(&player);
+  char *sprite_path = "gfxsheet/sprites.png";
 
+  srand(time(NULL));
+  result = initialize_player(&sdl, &player, sprite_path);
+  if (result < 0) {
+    fprintf(stderr, "fatal ERR.. closing. ERR: %s\n", strerror(errno));
+    return 1;
+  }
   printf("INITIALIZED PLAYER IN %3.f ms\n", (float)SDL_GetTicks64());
 
   float prev_time = SDL_GetTicks64();

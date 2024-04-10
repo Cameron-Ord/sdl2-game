@@ -17,4 +17,6 @@ void initialize_variables(struct SdlData *sdlptr);
 // audio
 void callback(void *userdata, Uint8 *stream, int len);
 
+// Window
+void get_sdl_window_size(SDL_Window *w, int *width, int *height);
 #endif

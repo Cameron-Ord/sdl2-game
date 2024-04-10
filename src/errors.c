@@ -3,7 +3,7 @@
 char last_err[1024];
 
 void print_SDL_err(const char *msg) {
-  fprintf(stderr, "%s\n", msg);
+  fprintf(stderr, "SDL ERR: %s\n", msg);
   memset(last_err, '\0', sizeof(last_err));
   strcpy(last_err, msg);
 }

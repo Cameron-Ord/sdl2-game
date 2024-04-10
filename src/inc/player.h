@@ -1,7 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "player_structs.h"
-void initialize_player(struct Player *player);
+#include "sdl_structs.h"
+#include <SDL2/SDL.h>
+
+int initialize_player(struct SdlData *sdl, struct Player *player,
+                      char *sprite_path);
+void get_initial_position(struct SdlData *sdl, SDL_Rect *player_rect);
+int create_player_surface(char *file_path, SDL_Surface **surf_ptr);
+int create_player_texture(SDL_Renderer *r, SDL_Surface **surf_ptr,
+                          SDL_Texture **tex_ptr);
 
 /*
  *
