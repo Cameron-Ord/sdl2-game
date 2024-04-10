@@ -10,8 +10,8 @@
 // initialization
 
 int start_sdl(struct SdlData *sdlptr);
-int create_window_context(SDL_Window **w, char *last_err);
-int create_render_context(SDL_Window **w, SDL_Renderer **r, char *last_err);
+int create_window_context(SDL_Window **w);
+int create_render_context(SDL_Window **w, SDL_Renderer **r);
 void initialize_variables(struct SdlData *sdlptr);
 
 // audio

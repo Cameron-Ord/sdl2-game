@@ -7,7 +7,7 @@ int start_sdl(struct SdlData *sdlptr) {
 
   int status = 0;
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-    print_SDL_err(SDL_GetError(), sdlptr->last_err);
+    print_SDL_err(SDL_GetError());
     return -1;
   }
 
@@ -16,12 +16,12 @@ int start_sdl(struct SdlData *sdlptr) {
 
   initialize_variables(sdlptr);
 
-  status = create_window_context(&sdlptr->w, sdlptr->last_err);
+  status = create_window_context(&sdlptr->w);
   if (status < 0) {
     return status;
   }
 
-  status = create_render_context(&sdlptr->w, &sdlptr->r, sdlptr->last_err);
+  status = create_render_context(&sdlptr->w, &sdlptr->r);
   if (status < 0) {
     return status;
   }
@@ -50,16 +50,15 @@ void initialize_variables(struct SdlData *sdlptr) {
   sdlptr->running = 0;
   sdlptr->w_width = BASE_WIDTH;
   sdlptr->w_height = BASE_HEIGHT;
-  memset(sdlptr->last_err, '\0', sizeof(sdlptr->last_err));
   memset(sdlptr->state, '\0', sizeof(sdlptr->state));
 }
 
-int create_window_context(SDL_Window **w, char *last_err) {
+int create_window_context(SDL_Window **w) {
   *w = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                         BASE_WIDTH, BASE_HEIGHT, 0);
 
   if (!*w) {
-    print_SDL_err(SDL_GetError(), last_err);
+    print_SDL_err(SDL_GetError());
     return (-1);
   }
 
@@ -67,12 +66,12 @@ int create_window_context(SDL_Window **w, char *last_err) {
   return (0);
 }
 
-int create_render_context(SDL_Window **w, SDL_Renderer **r, char *last_err) {
+int create_render_context(SDL_Window **w, SDL_Renderer **r) {
   int status = 0;
   *r = SDL_CreateRenderer(*w, -1,
                           SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   if (!*r) {
-    print_SDL_err(SDL_GetError(), last_err);
+    print_SDL_err(SDL_GetError());
     return (-1);
   }
   return (0);

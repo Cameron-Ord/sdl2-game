@@ -16,7 +16,6 @@ struct SdlData {
   int w_height;
 
   char state[256];
-  char last_err[256];
 };
 
 #endif

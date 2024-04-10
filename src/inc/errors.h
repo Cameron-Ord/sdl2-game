@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-void print_SDL_err(const char *msg, char *last_err);
-void print_last_err(char *last_err);
+void print_SDL_err(const char *msg);
+void print_last_err();
+void print_mem_err(char *msg, char *type);
 
 #endif

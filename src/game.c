@@ -1,9 +1,18 @@
 #include "inc/sdl_include.h"
 
+#include <time.h>
+
 int main(int argc, char *argv[]) {
   struct SdlData sdl;
+  struct Player player;
+
   if (start_sdl(&sdl) < 0)
     return -1;
+
+  srand(time(NULL));
+  initialize_player(&player);
+
+  printf("INITIALIZED PLAYER IN %3.f ms\n", (float)SDL_GetTicks64());
 
   float prev_time = SDL_GetTicks64();
   float current_time, delta_time;
