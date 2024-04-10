@@ -1,7 +1,7 @@
+#include "inc/errors.h"
 #include "inc/sdl_include.h"
-
-#include <errno.h>
 #include <time.h>
+
 int main(int argc, char *argv[]) {
   int result = 0;
   struct SdlData sdl;
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   srand(time(NULL));
   result = initialize_player(&sdl, &player, sprite_path);
   if (result < 0) {
-    fprintf(stderr, "fatal ERR.. closing. ERR: %s\n", strerror(errno));
+    print_last_err();
     return 1;
   }
   printf("INITIALIZED PLAYER IN %3.f ms\n", (float)SDL_GetTicks64());
